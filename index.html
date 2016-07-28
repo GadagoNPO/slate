@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,8 +102,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,8 +110,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/GadagoNPO/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -121,147 +118,216 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the TAB new app API. 
+This is a good sum-up about good practice for APIs : http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+It is very close from what I already did in the past. I will add few other links here that are pertinent on 
+this matter.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>This is the first version of the doc (2016-07-28), urls, parameters etc&hellip; might changed. This is some work in progress.
+Curl references are obviously not working yet&hellip;</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>I am not describing yet the authentication as we have not decided yet how we are going to do it.</p>
 
-<h1 id="authentication">Authentication</h1>
+          <h1 id="lists">Lists</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<h2 id="get-lists-of-available-lists-of-events">Get lists of available lists of events</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/lists/:id/:lang"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>The above command returns JSON structured like this when id = en and lang = genre</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"lists"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"graphics"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Graphics"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/graphics"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"illustration"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Illustration"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/illustration"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"painting"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Painting"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/painting"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"drawing"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Drawing"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/drawing"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"manga"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Manga"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/manga"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nihonga"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Nihonga"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/nihonga"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"photography"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Photography"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/photography"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"prints"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Prints"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/prints"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"architecture"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Architecture"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/architecture"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sculpture"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Sculpture"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/sculpture"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"installation"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Installation"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/installation"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fashion"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Fashion"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/fashion"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"product"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Product"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/product"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"crafts"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Crafts"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/crafts"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ceramics"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Ceramics"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/ceramics"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"video_and_film"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Video and Film"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/video_and_film"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"animation"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Animation"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/animation"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"media_arts"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Media Arts"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/media_arts"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sound"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Sound"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/sound"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"performance_art"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Performance Art"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/performance_art"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"art_festival"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Art Festival"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/art_festival"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"art_fair"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Art Fair"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/art_fair"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"artist_in_residence"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Artist in Residence"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/artist_in_residence"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"art_competition"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Art Competition"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/art_competition"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"party"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Party"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/party"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"workshops"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Workshops"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/workshops"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"talks"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Talks"</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1..n"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/genre/talks"</span><span class="w">  </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"lastUpdate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"some timestamp"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<blockquote>
+<p>The above command returns JSON structured like this when id = en and lang = area</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"lists"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ginza"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ginza, Marunouchi"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/ginza"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ueno"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ueno, Yanaka"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"kyobachi"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Kyobashi, Nihonbashi"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"omotesando"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Omotesando, Aoyama"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"shinjuku"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Shinjuku"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"shibuya"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Shibuya"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"roppongi"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Roppongi, Nogizaka"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ebisu"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ebisu, Daikanyama"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"musashino"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Musashino, Tama"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bakurocho"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bakurocho"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"shirokane"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Shirokane, Hiroo"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"chiyoda"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Chiyoda"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"odaiba"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Odaiba, Kachidoki"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"kiyosumi"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Kiyosumi, Ryogoku"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ichigaya"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ichigaya, Kagurazaka"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"setagaya"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Setagaya, Kawasaki"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yokohama"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Yokohama, Kanagawa"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo_others"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tokyo: Others"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"kanto_others"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: Others"</span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/api/v1/events/area/:id"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"lastUpdate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"some timestamp"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when id = en and lang = smart</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"lists"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"most_popular"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Most Popular"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/most_popular"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ending_soon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ending Soon"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Discount"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"starting_soon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Starting Soon"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"just_started"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Just Started"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/:id"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"opening_receptions"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Opening Receptions"</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat.com/v1/events/smart/:id"</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"lastUpdate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"some timestamp"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The endpoint gets the different existing lists of events. THIS IS A NEW API TO BUILD.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/lists/:id/:lang</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>id</td>
+<td>id must be one of : genre, area, smart</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+          <h1 id="events">Events</h1>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<h2 id="list-of-events-by-genre">List of events by genre</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/genre/:id/:lang "</span>
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns JSON structured like this when id = genre and lang = en</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves the list of events by genre. We already have an API on current system giving us an XML answer, we will use it to produce this json result.  </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/genre/:id/:lang</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -272,8 +338,1072 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>id</td>
+<td>one of the existing genre (graphics, etc&hellip;) retrieved from Lists API</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="list-of-events-by-area">List of events by area</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/area/:id/:lang "</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when id = area and lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events by area. We already have an API on current system giving us an XML answer, we will use it to produce this json result.  </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/area/:id/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>one of the existing area (shibuya, etc&hellip;) retrieved from Lists API</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="list-of-events-for-a-smart-list">List of events for a smart list</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/smart/:id/:lang "</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when id = area and lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events for a smart list. We already have an API on current system giving us an XML answer, we will use it to produce this json result.  </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/smart/:id/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>one of the existing smart lists (most_popular, etc&hellip;) retrieved from Lists API</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="list-of-events-nearby">List of events nearby</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this :</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events nearby. We already have an API on current system giving us an XML answer, we will use it to produce this json result.  </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>long</td>
+<td>longitude (format TBD)</td>
+</tr>
+<tr>
+<td>lat</td>
+<td>latitude (format TBD)</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="search-events">Search events</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/search/:key/:lang "</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when key = Keith and lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events for a search. We already have an API on current system giving us an JSON answer, we will update it and use it to produce this json result.  </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/search/:key/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>a string of characters (max length : TBD)</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="going-events">Going events</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/going/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events the logged in user is going. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/going/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="going-to-an-event">Going to an event</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/going"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"going"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://api.tokyoartbeat.com/api/v1/events/:id/going</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID  of events (2016/XXXX)</td>
+</tr>
+</tbody></table>
+
+          <h2 id="ungoing-to-an-event">Ungoing to an event</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/going"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"going"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint removes the logged in user status for this event (no status = initial state).THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.tokyoartbeat.com/api/v1/events/:id/going</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID  of events (2016/XXXX)</td>
+</tr>
+</tbody></table>
+
+          <h2 id="went-events">Went events</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/went/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2D: Drawing"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the list of events the logged in user went. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/went/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="went-to-an-event">Went to an event</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/went"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"went"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://api.tokyoartbeat.com/api/v1/events/:id/went</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID  of events (2016/XXXX)</td>
+</tr>
+</tbody></table>
+
+          <h2 id="undo-went-to-an-event">Undo went to an event</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/went"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"went"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint removes the logged in user status for this event (no status = initial state).THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.tokyoartbeat.com/api/v1/events/:id/went</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID  of events (2016/XXXX)</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-one-event-data">Get one event data</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/:lang "</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when id = 2016/A2E2 and lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"query_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.67000007629395</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016\/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2.en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"page_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\/media\/event\/2016\/A2E2-620"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring \u201dGlowing - Evolving Forms\u201c"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description_raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"artist"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Keith Haring"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"artist_etc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_copyright"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults \u00a51000, University Students and Seniors over 65 \u00a5800, High, Junior High and Elementaly School Students \u00a5600, Infants free."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.nakamura-haring.com\/pg25.html"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"web_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.318775"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.887612"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"openinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"breakstart"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"breakend"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"openingdetails"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_graphicdesign"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_painting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_drawing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+      </span><span class="nt">"one_category_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"painting"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"one_category_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/118.82.80.197\/news\/2016\/03\/2016.html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_warning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ends in 193 days"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"one_day_event"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"party"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opening reception"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"nearby_events"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"mupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non valid event ID"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"cached_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-22 06:49:15"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the data of an individual event by its id. We already have an API on current system giving us this json answer.
+We don&rsquo;t use it in the current TAB app at the moment as the data for events are also sent in the lists of events.
+This API is used on the website for /events as it offers more data.</p>
+
+<p>We have to discuss if we use something like this or not for the new app.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/:id/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>event id</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h1 id="venues">Venues</h1>
+
+<h2 id="venues-followed">Venues followed</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/venues/follow/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the logged in user list of events for the corresponding followed venues. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/venues/follow/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h2 id="follow-a-venue">Follow a venue</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/venues/:id/follow/"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"venue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXX"</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"following"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint saves the logged in user status for this venue. THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://api.tokyoartbeat.com/api/v1/venues/:id/follow/</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id of venue to follow</td>
+</tr>
+</tbody></table>
+
+          <h2 id="unfollow-a-venue">Unfollow a venue</h2>
+<pre class="highlight shell"><code>curl DELETE -X <span class="s2">"http://api.tokyoartbeat.com/api/v1/venues/:id/follow/"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"venue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"XXXXXX"</span><span class="w"> 
+  </span><span class="err">}</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"following"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint removes the logged in user status for this venue (no status = initial state). THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://api.tokyoartbeat.com/api/v1/venues/:id/follow/</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>id of venue to unfollow</td>
+</tr>
+</tbody></table>
+
+          <h1 id="news">News</h1>
+
+<h2 id="get-the-news">Get the news</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/news/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"news"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the instagram API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zzz"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wordpress"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the WP API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+
+    </span><span class="p">{</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">tweets</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">instagram</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">wordpress</span><span class="w"> </span><span class="err">articles</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">ordered</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">recent</span><span class="w"> </span><span class="err">dates</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">guess</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">""</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the news which are an aggregation of feeds (Twitter, Instagram, Magazine (tab wordpress)). THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/news/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -281,7 +1411,7 @@ Remember — a happy kitten is an authenticated kitten!
 
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The TAB API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -291,7 +1421,7 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request &ndash; Your request is badly written</td>
 </tr>
 <tr>
 <td>401</td>
@@ -299,15 +1429,15 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; The data requested is hidden for administrators only</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified data could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; You tried to access data with an invalid method</td>
 </tr>
 <tr>
 <td>406</td>
@@ -315,7 +1445,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>Gone &ndash; The data requested has been removed from our servers</td>
 </tr>
 <tr>
 <td>418</td>
@@ -323,7 +1453,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many data! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
@@ -331,7 +1461,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily off line for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
@@ -339,8 +1469,6 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
