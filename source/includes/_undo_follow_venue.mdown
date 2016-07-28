@@ -1,0 +1,28 @@
+## Unfollow a venue
+
+```shell
+curl DELETE -X "http://api.tokyoartbeat.com/api/v1/venues/:id/follow/"
+```
+
+> The above command returns JSON structured like this 
+
+```json
+{
+  "venue" : [
+    "id" : "XXXXXX" 
+  },
+  "following" : false
+}
+```
+
+This endpoint removes the logged in user status for this venue (no status = initial state). THIS IS A NEW API TO BUILD
+
+### HTTP Request
+
+`DELETE http://api.tokyoartbeat.com/api/v1/venues/:id/follow/`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id | id of venue to unfollow
