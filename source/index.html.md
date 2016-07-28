@@ -32,7 +32,8 @@ search: true
 
 # Introduction
 
-Welcome to the TAB new app API. 
+Welcome to the TAB new app API.
+
 This is a good sum-up about good practice for APIs : http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
 It is very close from what I already did in the past. I will add few other links here that are pertinent on 
 this matter.
