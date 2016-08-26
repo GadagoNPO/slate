@@ -25,6 +25,7 @@ includes:
   - follow_venue
   - undo_follow_venue
   - news
+  - holidays
   - errors
 
 search: true

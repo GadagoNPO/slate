@@ -11,8 +11,9 @@ curl "http://api.tokyoartbeat.com/api/v1/news/:lang"
 ```json
 {
   "news" : [
-    { "id" : "xxx", "feed" : "twitter", "data": "what we can get from the twitter API" },
-    { "id" : "yyy", "feed" : "instagram", "data": "what we can get from the instagram API" },
+    { "id" : "xxx", "feed" : "twitter", "account": "tokyoartbeat_en", "data": "what we can get from the twitter API" },
+    { "id" : "xxx", "feed" : "twitter", "account": "mupon", "data": "what we can get from the twitter API" },
+    { "id" : "yyy", "feed" : "instagram", "account": "tokyoartbeat", "data": "what we can get from the instagram API" },
     { "id" : "zzz", "feed" : "wordpress", "data": "what we can get from the WP API" },
 
     { other tweets or instagram or wordpress articles all ordered by most recent dates I guess }
