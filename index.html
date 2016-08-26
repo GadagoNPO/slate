@@ -1378,8 +1378,9 @@ This API is used on the website for /events as it offers more data.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"news"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the instagram API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat_en"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mupon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the instagram API"</span><span class="w"> </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zzz"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wordpress"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the WP API"</span><span class="w"> </span><span class="p">},</span><span class="w">
 
     </span><span class="p">{</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">tweets</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">instagram</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">wordpress</span><span class="w"> </span><span class="err">articles</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">ordered</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">recent</span><span class="w"> </span><span class="err">dates</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">guess</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -1393,6 +1394,43 @@ This API is used on the website for /events as it offers more data.</p>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/news/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
+          <h1 id="holiday">Holiday</h1>
+
+<h2 id="check-if-current-or-next-day-is-a-holiday">Check if current or next day is a holiday</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/holidays/:lang"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"holidays"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"today"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">true,</span><span class="w"> </span><span class="err">date:</span><span class="w"> </span><span class="nt">""</span><span class="err">,</span><span class="w"> </span><span class="err">text</span><span class="w"> </span><span class="p">:</span><span class="s2">"yama  no hi"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"tomorrow"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">false,</span><span class="w"> </span><span class="err">date:</span><span class="w"> </span><span class="nt">""</span><span class="w"> </span><span class="err">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">,</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint check if current day or next next day is a holiday THIS IS A NEW API TO BUILD</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/holidays/:lang</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
