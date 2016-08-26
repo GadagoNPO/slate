@@ -10,14 +10,12 @@ curl "http://api.tokyoartbeat.com/api/v1/holidays/:lang"
 
 ```json
 {
-  "holidays" : [
-    { "today" :  { status : true, date: "", text :"yama  no hi" } },
-    { "tomorrow" : { status : false, date: "" } }
-  ],
+   { "today" : { status : true, date: "2016-08-11", text :"yama  no hi" } },
+   { "tomorrow" : { status : false, date: "2016-08-12" } }
 }
 ```
 
-This endpoint check if current day or next next day is a holiday THIS IS A NEW API TO BUILD
+This endpoint check if current day or/and next next day is a holiday THIS IS A NEW API TO BUILD
 
 ### HTTP Request
 
