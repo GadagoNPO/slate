@@ -1,4 +1,4 @@
-# Holiday
+# Holidays
 
 ## Check if current or next day is a holiday
 
@@ -12,7 +12,7 @@ curl "http://api.tokyoartbeat.com/api/v1/holidays/:lang"
 {
   "holidays" : [
     { "today" :  { status : true, date: "", text :"yama  no hi" } },
-    { "tomorrow" : { status : false, date: "" } } ,
+    { "tomorrow" : { status : false, date: "" } }
   ],
 }
 ```
