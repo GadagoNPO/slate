@@ -10,8 +10,8 @@ curl "http://api.tokyoartbeat.com/api/v1/holidays/:lang"
 
 ```json
 {
-   { "today" : { status : true, date: "2016-08-11", text :"yama  no hi" } },
-   { "tomorrow" : { status : false, date: "2016-08-12" } }
+   { "today" : { status : true, date: "2016-08-11", text :"yama  no hi" },
+   { "tomorrow" : { status : false, date: "2016-08-12" } 
 }
 ```
 
