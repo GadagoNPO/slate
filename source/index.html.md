@@ -27,6 +27,8 @@ includes:
   - news
   - holidays
   - errors
+  - time_development_estimation
+
 
 search: true
 ---
