@@ -8,3 +8,16 @@ If accept-language HTTP header is defined but different then en or ja, and local
 If locale is other than en and ja, an error is returned.
 
 If no accept-language HTTP header is defined, we check for the locale parameter in the url, only en and ja are supported else error is returned.
+
+So you can check the API from the browser using the locale parameter : 
+
+![alt tag](/images/web-request.jpg)
+
+Or you can use the Accept-Language HTTP header (preferred method fro real request from an app.) :
+
+ex with curl :
+
+`curl -H Accept-language:en http://localhost:3000/api/v0/lists/smart`
+
+![alt tag](/images/curl-request.jpg)
+
