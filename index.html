@@ -143,6 +143,18 @@ If locale is other than en and ja, an error is returned.</p>
 
 <p>If no accept-language HTTP header is defined, we check for the locale parameter in the url, only en and ja are supported else error is returned.</p>
 
+<p>So you can check the API from the browser using the locale parameter : </p>
+
+<p><img alt="alt tag" src="images/web-request.jpg" /></p>
+
+<p>Or you can use the Accept-Language HTTP header (preferred method fro real request from an app.) :</p>
+
+<p>ex with curl :</p>
+
+<p><code class="prettyprint">curl -H Accept-language:en http://localhost:3000/api/v0/lists/smart</code></p>
+
+<p><img alt="alt tag" src="images/curl-request.jpg" /></p>
+
           <h1 id="lists">Lists</h1>
 
 <h2 id="get-lists-of-available-lists-of-events">Get lists of available lists of events</h2>
