@@ -9,23 +9,23 @@ toc_footers:
 
 includes:
   - lists
+  - holidays
   - events_genre
   - events_area
   - events_smart_list
   - events_nearby
   - events_search
+  - events_id
   - events_going
   - going_event
   - undo_going_event
   - events_went
   - went_event
   - undo_went_event
-  - events_id
+  - news
   - venues_followed
   - follow_venue
   - undo_follow_venue
-  - news
-  - holidays
   - errors
   - time_development_estimation
 

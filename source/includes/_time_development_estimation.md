@@ -65,3 +65,9 @@
 ## Login / Registration 
 
  - depends a lot of what we decide to do
+
+## Import of Atlist / MyTab bookmarks
+
+ - TBD
+
+
