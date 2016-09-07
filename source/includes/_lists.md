@@ -4,7 +4,15 @@
 ## Get lists of available lists of events
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/lists/:id/:lang"
+curl "https://api.tokyoartbeat.com/api/v1/lists/:id?locale=:locale"
+
+or
+
+curl -H Accept-language:en https://localhost:3000/api/v0/lists/genre
+
+or
+
+curl -H Accept-language:ja https://localhost:3000/api/v0/lists/genre
 ```
 
 > The above command returns JSON structured like this when id = en and lang = genre
@@ -96,11 +104,11 @@ The endpoint gets the different existing lists of events. THIS IS A NEW API TO B
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/lists/:id/:lang`
+`GET http://api.tokyoartbeat.com/api/v1/lists/:id?locale=:locale`
 
 ### Query Parameters
 
 Parameter  | Description
 ---------  | -----------
 id  | id must be one of : genre, area, smart
-lang | "en" or "ja"
+locale | option : "en" or "ja"

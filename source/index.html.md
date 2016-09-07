@@ -8,6 +8,7 @@ toc_footers:
   - <a href='https://github.com/GadagoNPO/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - internationalization
   - lists
   - holidays
   - events_genre
@@ -37,12 +38,15 @@ search: true
 
 Welcome to the TAB new app API.
 
-This is a good sum-up about good practice for APIs : http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+This is a good sum-up about good practice for APIs : [http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
 It is very close from what I already did in the past. I will add few other links here that are pertinent on 
 this matter.
 
-This is the first version of the doc (2016-07-28), urls, parameters etc... might changed. This is some work in progress.
-Curl references are obviously not working yet...
 
-I am not describing yet the authentication as we have not decided yet how we are going to do it.
+Plan for the urls :
 
+  - staging with data mocking : https://api-staging.tokyoartbeat.com/api/v0/  [note v0]
+
+  - staging : https://api-staging.tokyoartbeat.com/api/v1/
+
+  - production : https://api.tokyoartbeat.com/api/v1/

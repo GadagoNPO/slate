@@ -3,7 +3,7 @@
 ## Check if current or next day is a holiday
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/holidays"
+curl "https://api.tokyoartbeat.com/api/v1/holidays"
 ```
 
 > The above command returns JSON structured like this 
@@ -42,9 +42,9 @@ Note :
 
 2 - name will be only in Japanese, the the GEM does not provide English version, maybe we could fork the repo and offer translation ability... or not.
 
-### HTTP Request
+### HTTPS Request
 
-`GET http://api.tokyoartbeat.com/api/v1/holidays`
+`GET https://api.tokyoartbeat.com/api/v1/holidays`
 
 ### URL Parameters
 
