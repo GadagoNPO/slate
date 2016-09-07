@@ -241,6 +241,64 @@ Curl references are obviously not working yet&hellip;</p>
 </tr>
 </tbody></table>
 
+          <h1 id="holidays">Holidays</h1>
+
+<h2 id="check-if-current-or-next-day-is-a-holiday">Check if current or next day is a holiday</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/holidays"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"holidays"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"today"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"is_holiday"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2016-08-11"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"山の日"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"tomorrow"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"is_holiday"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2016-08-12"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"next_holiday"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2016-09-19"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"敬老の日"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint check if current day or/and next next day is a holiday <del>THIS IS A NEW API TO BUILD</del> : DONE!</p>
+
+<p>Note :</p>
+
+<p>1 - I added next_holiday because&hellip; I could. Not sure it has any value</p>
+
+<p>2 - name will be only in Japanese, the the GEM does not provide English version, maybe we could fork the repo and offer translation ability&hellip; or not.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/holidays</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>There is no parameter.</p>
+
           <h1 id="events">Events</h1>
 
 <h2 id="list-of-events-by-genre">List of events by genre</h2>
@@ -772,6 +830,153 @@ Curl references are obviously not working yet&hellip;</p>
 </tr>
 </tbody></table>
 
+          <h2 id="get-one-event-data">Get one event data</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/:lang "</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this when id = 2016/A2E2 and lang = en</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"query_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.67000007629395</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016\/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2.en"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"page_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\/media\/event\/2016\/A2E2-620"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring \u201dGlowing - Evolving Forms\u201c"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description_raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"artist"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Keith Haring"</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"artist_etc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"image_copyright"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4DF46FE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults \u00a51000, University Students and Seniors over 65 \u00a5800, High, Junior High and Elementaly School Students \u00a5600, Infants free."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.nakamura-haring.com\/pg25.html"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"web_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.318775"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.887612"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"openinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"breakstart"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"breakend"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"openingdetails"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"closed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_graphicdesign"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_painting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="w">
+      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_drawing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+      </span><span class="nt">"one_category_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"painting"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"one_category_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/118.82.80.197\/news\/2016\/03\/2016.html"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"url_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_warning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ends in 193 days"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"one_day_event"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"party"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opening reception"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"nearby_events"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"mupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non valid event ID"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"cached_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-22 06:49:15"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves the data of an individual event by its id. We already have an API on current system giving us this json answer.
+We don&rsquo;t use it in the current TAB app at the moment as the data for events are also sent in the lists of events.
+This API is used on the website for /events as it offers more data.</p>
+
+<p>We have to discuss if we use something like this or not for the new app.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/:id/:lang</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>event id</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+</tbody></table>
+
           <h2 id="going-events">Going events</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/going/:lang"</span>
 </code></pre>
@@ -1114,134 +1319,33 @@ Curl references are obviously not working yet&hellip;</p>
 </tr>
 </tbody></table>
 
-          <h2 id="get-one-event-data">Get one event data</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/:lang "</span>
+          <h1 id="news">News</h1>
+
+<h2 id="get-the-news">Get the news</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/news/:lang"</span>
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this when id = 2016/A2E2 and lang = en</p>
+<p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"query_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.67000007629395</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"en"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016\/A2E2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"event_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2.en"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"page_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.tokyoartbeat.com\/event\/2016\/A2E2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"photo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\/media\/event\/2016\/A2E2-620"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring \u201dGlowing - Evolving Forms\u201c"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description_raw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description_html"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring\u2019s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"artist"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Keith Haring"</span><span class="p">],</span><span class="w">
-      </span><span class="nt">"artist_etc"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image_copyright"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4DF46FE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults \u00a51000, University Students and Seniors over 65 \u00a5800, High, Junior High and Elementaly School Students \u00a5600, Infants free."</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"web"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/www.nakamura-haring.com\/pg25.html"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"web_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.318775"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.887612"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"openinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"closinghour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"breakstart"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"breakend"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"openingdetails"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"closed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_graphicdesign"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Graphics"</span><span class="w">
-      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_painting"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="w">
-      </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"print_drawing"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2D"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drawing"</span><span class="w">
-      </span><span class="p">}],</span><span class="w">
-      </span><span class="nt">"one_category_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"painting"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"one_category_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Painting"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http:\/\/118.82.80.197\/news\/2016\/03\/2016.html"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"url_lang"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"fee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"discount_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"permanent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"date_warning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ends in 193 days"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"time_alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"one_day_event"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"party"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opening reception"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"nearby_events"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"mupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non valid event ID"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"cached_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-22 06:49:15"</span><span class="w">
+  </span><span class="nt">"news"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat_en"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mupon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the instagram API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zzz"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wordpress"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the WP API"</span><span class="w"> </span><span class="p">},</span><span class="w">
+
+    </span><span class="p">{</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">tweets</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">instagram</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">wordpress</span><span class="w"> </span><span class="err">articles</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">ordered</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">recent</span><span class="w"> </span><span class="err">dates</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">guess</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">""</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves the data of an individual event by its id. We already have an API on current system giving us this json answer.
-We don&rsquo;t use it in the current TAB app at the moment as the data for events are also sent in the lists of events.
-This API is used on the website for /events as it offers more data.</p>
-
-<p>We have to discuss if we use something like this or not for the new app.</p>
+<p>This endpoint retrieves the news which are an aggregation of feeds (Twitter, Instagram, Magazine (tab wordpress)). THIS IS A NEW API TO BUILD</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/:id/:lang</code></p>
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/news/:lang</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1251,10 +1355,6 @@ This API is used on the website for /events as it offers more data.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>id</td>
-<td>event id</td>
-</tr>
 <tr>
 <td>lang</td>
 <td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
@@ -1364,85 +1464,6 @@ This API is used on the website for /events as it offers more data.</p>
 <tr>
 <td>id</td>
 <td>id of venue to unfollow</td>
-</tr>
-</tbody></table>
-
-          <h1 id="news">News</h1>
-
-<h2 id="get-the-news">Get the news</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/news/:lang"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this </p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"news"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat_en"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mupon"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the twitter API"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"instagram"</span><span class="p">,</span><span class="w"> </span><span class="nt">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyoartbeat"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the instagram API"</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"zzz"</span><span class="p">,</span><span class="w"> </span><span class="nt">"feed"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wordpress"</span><span class="p">,</span><span class="w"> </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"what we can get from the WP API"</span><span class="w"> </span><span class="p">},</span><span class="w">
-
-    </span><span class="p">{</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">tweets</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">instagram</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">wordpress</span><span class="w"> </span><span class="err">articles</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">ordered</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">recent</span><span class="w"> </span><span class="err">dates</span><span class="w"> </span><span class="err">I</span><span class="w"> </span><span class="err">guess</span><span class="w"> </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">""</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves the news which are an aggregation of feeds (Twitter, Instagram, Magazine (tab wordpress)). THIS IS A NEW API TO BUILD</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/news/:lang</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>lang</td>
-<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
-</tr>
-</tbody></table>
-
-          <h1 id="holidays">Holidays</h1>
-
-<h2 id="check-if-current-or-next-day-is-a-holiday">Check if current or next day is a holiday</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/holidays/:lang"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this </p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"holidays"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"today"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-11"</span><span class="p">,</span><span class="w"> </span><span class="nt">"text"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"yama  no hi"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="nt">"tomorrow"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint check if current day or/and next next day is a holiday THIS IS A NEW API TO BUILD</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/holidays/:lang</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>lang</td>
-<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -1601,6 +1622,12 @@ This API is used on the website for /events as it offers more data.</p>
 
 <ul>
 <li>depends a lot of what we decide to do</li>
+</ul>
+
+<h2 id="import-of-atlist-mytab-bookmarks">Import of Atlist / MyTab bookmarks</h2>
+
+<ul>
+<li>TBD</li>
 </ul>
 
       </div>
