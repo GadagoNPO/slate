@@ -120,19 +120,41 @@
 
 <p>Welcome to the TAB new app API.</p>
 
-<p>This is a good sum-up about good practice for APIs : http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+<p>This is a good sum-up about good practice for APIs : <a href="http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api</a>
 It is very close from what I already did in the past. I will add few other links here that are pertinent on 
 this matter.</p>
 
-<p>This is the first version of the doc (2016-07-28), urls, parameters etc&hellip; might changed. This is some work in progress.
-Curl references are obviously not working yet&hellip;</p>
+<p>Plan for the urls :</p>
 
-<p>I am not describing yet the authentication as we have not decided yet how we are going to do it.</p>
+<ul>
+<li><p>staging with data mocking : https://api-staging.tokyoartbeat.com/api/v0/  [note v0]</p></li>
+<li><p>staging : https://api-staging.tokyoartbeat.com/api/v1/</p></li>
+<li><p>production : https://api.tokyoartbeat.com/api/v1/</p></li>
+</ul>
+
+          <h1 id="internationalization">Internationalization</h1>
+
+<p>You can specify the locale by setting the Accept-Language HTTP header in your request. Alternatively, you can add a locale=XXX parameter to your request but HTTP header specification is preferred. We currently support en and ja.</p>
+
+<p>If accept-language HTTP header is one of en or ja, this one is used even if locale is defined differently in the url as a parameter.</p>
+
+<p>If accept-language HTTP header is defined but different then en or ja, and locale is defined in the url as en or ja. Locale is used.
+In locale is other, an error is returned.</p>
+
+<p>If no accept-language HTTP header is defined, we check for the locale parameter in the url, only en and ja are supported else error is returned.</p>
 
           <h1 id="lists">Lists</h1>
 
 <h2 id="get-lists-of-available-lists-of-events">Get lists of available lists of events</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/lists/:id/:lang"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/lists/:id?locale=:locale"</span>
+
+or
+
+curl -H Accept-language:en https://localhost:3000/api/v0/lists/genre
+
+or
+
+curl -H Accept-language:ja https://localhost:3000/api/v0/lists/genre
 </code></pre>
 
 <blockquote>
@@ -221,7 +243,7 @@ Curl references are obviously not working yet&hellip;</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/lists/:id/:lang</code></p>
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/lists/:id?locale=:locale</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -236,15 +258,15 @@ Curl references are obviously not working yet&hellip;</p>
 <td>id must be one of : genre, area, smart</td>
 </tr>
 <tr>
-<td>lang</td>
-<td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+<td>locale</td>
+<td>option : &ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
 </tr>
 </tbody></table>
 
           <h1 id="holidays">Holidays</h1>
 
 <h2 id="check-if-current-or-next-day-is-a-holiday">Check if current or next day is a holiday</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/holidays"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </code></pre>
 
 <blockquote>
@@ -283,9 +305,9 @@ Curl references are obviously not working yet&hellip;</p>
 
 <p>2 - name will be only in Japanese, the the GEM does not provide English version, maybe we could fork the repo and offer translation ability&hellip; or not.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/holidays</code></p>
+<p><code class="prettyprint">GET https://api.tokyoartbeat.com/api/v1/holidays</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
