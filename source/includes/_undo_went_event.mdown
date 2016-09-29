@@ -1,7 +1,7 @@
 ## Undo went to an event
 
 ```shell
-curl -X DELETE "http://api.tokyoartbeat.com/api/v1/events/:id/went"
+curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:id/went"
 ```
 
 > The above command returns JSON structured like this 
@@ -19,7 +19,7 @@ This endpoint removes the logged in user status for this event (no status = init
 
 ### HTTP Request
 
-`DELETE http://api.tokyoartbeat.com/api/v1/events/:id/went`
+`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:id/went`
 
 ### URL Parameters
 

@@ -10,10 +10,12 @@ toc_footers:
 includes:
   - internationalization
   - lists
+  - lists_events
   - holidays
+  - news
+  - events_smart_list
   - events_genre
   - events_area
-  - events_smart_list
   - events_nearby
   - events_search
   - events_id
@@ -23,7 +25,7 @@ includes:
   - events_went
   - went_event
   - undo_went_event
-  - news
+
   - venues_followed
   - follow_venue
   - undo_follow_venue
@@ -42,7 +44,6 @@ This is a good sum-up about good practice for APIs : [http://www.vinaysahni.com/
 It is very close from what I already did in the past. I will add few other links here that are pertinent on 
 this matter.
 
-
 Plan for the urls :
 
   - staging with data mocking : https://api-staging.tokyoartbeat.com/api/v0/  [note v0]
@@ -50,3 +51,5 @@ Plan for the urls :
   - staging : https://api-staging.tokyoartbeat.com/api/v1/
 
   - production : https://api.tokyoartbeat.com/api/v1/
+
+In the following documentation I will use : https://api-staging.tokyoartbeat.com/api/v0/ everywhere, please use accordingly.

@@ -1,10 +1,10 @@
 ## Went events
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/went/:lang"
+curl "https://api-staging.tokyoartbeat.com/api/v1/events/went?locale=en"
 ```
 
-> The above command returns JSON structured like this when lang = en
+> The above command returns JSON structured like this when locale = en
 
 ```json
 {
@@ -85,10 +85,10 @@ This endpoint retrieves the list of events the logged in user went. THIS IS A NE
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/events/went/:lang`
+`GET https://api-staging.tokyoartbeat.com/api/v1/events/went?locale=:locale`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-lang | "en" or "ja"
+locale | "en" or "ja"

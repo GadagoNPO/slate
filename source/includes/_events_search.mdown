@@ -81,11 +81,13 @@ curl "http://api.tokyoartbeat.com/api/v1/events/search/:key/:lang "
 }
 ```
 
-This endpoint retrieves the list of events for a search. We already have an API on current system giving us an JSON answer, we will update it and use it to produce this json result.  
+This endpoint retrieves the list of events for a search. We already have an API on current system giving us an JSON answer, we will update it and use it to produce this json result.
+
+--- Present JSON object might change - WIP ---
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/events/search/:key/:lang`
+`GET https://api-staging.tokyoartbeat.com/api/v1/events/search/:key/:lang`
 
 ### URL Parameters
 

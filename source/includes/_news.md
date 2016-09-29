@@ -3,7 +3,7 @@
 ## Get the news
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/news/:lang"
+curl "http://api.tokyoartbeat.com/api/v1/news?locale=en"
 ```
 
 > The above command returns JSON structured like this 
@@ -26,10 +26,10 @@ This endpoint retrieves the news which are an aggregation of feeds (Twitter, Ins
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/news/:lang`
+`GET http://api.tokyoartbeat.com/api/v1/news?locale=:locale`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-lang | "en" or "ja"
+locale | "en" or "ja"

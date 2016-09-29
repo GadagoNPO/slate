@@ -3,6 +3,14 @@
 ## Check if current or next day is a holiday
 
 ```shell
+now : 
+
+curl "https://staging-api.tokyoartbeat.com/api/v0/holidays"
+
+later : 
+
+curl "https://staging-api.tokyoartbeat.com/api/v1/holidays"
+
 curl "https://api.tokyoartbeat.com/api/v1/holidays"
 ```
 
@@ -10,31 +18,36 @@ curl "https://api.tokyoartbeat.com/api/v1/holidays"
 
 ```json
 {
-  "holidays":[
+  "holidays": [
     {
-    "today":{
-      "is_holiday":true,
-      "date":"2016-08-11",
-      "name":"山の日"
+      "yesterday": {
+      "is_holiday": false,
+      "date": "2016-09-28"
       }
     },
     {
-    "tomorrow":{
-      "is_holiday":false,
-      "date":"2016-08-12"
+      "today": {
+      "is_holiday": false,
+      "date": "2016-09-29"
       }
     },
     {
-    "next_holiday":{
-      "date":"2016-09-19",
-      "name":"敬老の日"
+      "tomorrow": {
+      "is_holiday": false,
+      "date": "2016-09-30"
+      }
+    },
+    {
+      "next_holiday": {
+      "date": "2016-10-10",
+      "name": "体育の日"
       }
     }
   ]
 }
 ```
 
-This endpoint check if current day or/and next next day is a holiday <del>THIS IS A NEW API TO BUILD</del> : DONE!
+This endpoint check if current day or/and next next day or previous day is a holiday <del>THIS IS A NEW API TO BUILD</del> : DONE!
 
 Note :
 
@@ -44,7 +57,8 @@ Note :
 
 ### HTTPS Request
 
-`GET https://api.tokyoartbeat.com/api/v1/holidays`
+`GET https://api-staging.tokyoartbeat.com/api/v0/holidays`
+
 
 ### URL Parameters
 

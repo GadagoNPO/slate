@@ -1,7 +1,7 @@
 ## List of events nearby
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat/:lang"
+curl "http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat?locale=en"
 ```
 
 > The above command returns JSON structured like this :
@@ -81,11 +81,13 @@ curl "http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat/:lang"
 }
 ```
 
-This endpoint retrieves the list of events nearby. We already have an API on current system giving us an XML answer, we will use it to produce this json result.  
+This endpoint retrieves the list of events nearby. We already have an API on current system giving us an XML answer, we will use it to produce this json result.
+
+--- Present JSON object might change - WIP ---
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/events/nearby/:long/:lat/:lang`
+`GET https://api-staging.tokyoartbeat.com/api/v0/events/nearby/:long/:lat?locale=:locale`
 
 ### URL Parameters
 
@@ -93,5 +95,5 @@ Parameter | Description
 --------- | -----------
 long | longitude (format TBD)
 lat | latitude (format TBD)
-lang | "en" or "ja"
+locale | "en" or "ja"
 

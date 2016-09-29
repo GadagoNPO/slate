@@ -1,7 +1,7 @@
 ## Going to an event
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/:id/going"
+curl "https://api-staging.tokyoartbeat.com/api/v0/events/:id/going"
 ```
 
 > The above command returns JSON structured like this 
@@ -19,7 +19,7 @@ This endpoint saves the logged in user status for this event. THIS IS A NEW API 
 
 ### HTTP Request
 
-`POST http://api.tokyoartbeat.com/api/v1/events/:id/going`
+`POST https://api-staging.tokyoartbeat.com/api/v0/events/:id/going`
 
 ### URL Parameters
 

@@ -3,7 +3,7 @@
 ## Venues followed
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/venues/follow/:lang"
+curl "https://api-staging.tokyoartbeat.com/api/v0/venues/follow?locale=en"
 ```
 
 > The above command returns JSON structured like this 
@@ -20,10 +20,10 @@ This endpoint retrieves the logged in user list of events for the corresponding 
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/venues/follow/:lang`
+`GET https://api-staging.tokyoartbeat.com/api/v0/venues/follow?locale=:locale`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-lang | "en" or "ja"
+locale | "en" or "ja"
