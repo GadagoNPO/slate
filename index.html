@@ -1751,25 +1751,25 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tbody></table>
 
           <h2 id="going-to-an-event">Going to an event</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/events/:id/going"</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s2">"https://api-staging.tokyoartbeat.com/api/v1/events/:event_id/going"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"going"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"participation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"going"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD</p>
+<p>This endpoint saves the logged in user status for this event.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">POST https://api-staging.tokyoartbeat.com/api/v0/events/:id/going</code></p>
+<p><code class="prettyprint">POST https://api-staging.tokyoartbeat.com/api/v1/events/:event_id/going</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1780,31 +1780,31 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>ID  of events (2016/XXXX)</td>
+<td>event_id</td>
+<td>ID  of events (2016/XXXX don&rsquo;t need to escape the slash, it is taken care of)</td>
 </tr>
 </tbody></table>
 
           <h2 id="ungoing-to-an-event">Ungoing to an event</h2>
-<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/events/:id/going"</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"going"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="nt">"participation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_going"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint removes the logged in user status for this event (no status = initial state).THIS IS A NEW API TO BUILD</p>
+<p>This endpoint removes the logged in user status for this event.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:id/going</code></p>
+<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1815,8 +1815,8 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>ID  of events (2016/XXXX)</td>
+<td>event_id</td>
+<td>ID  of events (2016/XXXX,  don&rsquo;t need to escape the slash, it is taken care of)</td>
 </tr>
 </tbody></table>
 
@@ -1830,74 +1830,7 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"link"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.tokyoartbeat"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/event/2016/A2E2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keith Haring ”Glowing - Evolving Forms“"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/venue/B4DF46FE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nakamura Keith-Haring Collection"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Museum"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0551-36-8712"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan."</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"area"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kanto: others"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"openingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"closingHour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17:00:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"daysClosed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"mon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"tue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"wed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"thu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"fri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"sat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"sun"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"hol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Closed during the winter holidays."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"2D: Graphics"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2D: Painting"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"2D: Drawing"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. "</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-30"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-80"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/A2E2-170"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"170"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"karma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.749931"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"free"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"dateStart"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-24"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"dateEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-31"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"scheduleNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"daysBeforeEnd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"193"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"permanentEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"distance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"datum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokyo"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35.884436"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"138.321879"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="err">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1922,25 +1855,25 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tbody></table>
 
           <h2 id="went-to-an-event">Went to an event</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:id/went"</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/:event_id/went"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"went"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"participation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"went"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD</p>
+<p>This endpoint saves the logged in user status for this event.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">POST http://api.tokyoartbeat.com/api/v1/events/:id/went</code></p>
+<p><code class="prettyprint">POST https://api.tokyoartbeat.com/api/v1/events/:event_id/went</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1951,31 +1884,31 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>event_id</td>
 <td>ID  of events (2016/XXXX)</td>
 </tr>
 </tbody></table>
 
           <h2 id="undo-went-to-an-event">Undo went to an event</h2>
-<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/events/:id/went"</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"event"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"20XX/XXXX"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"went"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="nt">"participation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/A2E2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"going"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint removes the logged in user status for this event (no status = initial state).THIS IS A NEW API TO BUILD</p>
+<p>The event status is changed from went to going.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:id/went</code></p>
+<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1986,7 +1919,7 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>event_id</td>
 <td>ID  of events (2016/XXXX)</td>
 </tr>
 </tbody></table>
@@ -2028,25 +1961,25 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tbody></table>
 
           <h2 id="follow-a-venue">Follow a venue</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/venues/:id/follow/"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/venues/:venue_id/follow/"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"venue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXX"</span><span class="w"> 
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"following"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"follow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"venue_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07DE031E"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"follow"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint saves the logged in user status for this venue. THIS IS A NEW API TO BUILD</p>
+<p>This endpoint saves the logged in user status for this venue.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api-staging.tokyoartbeat.com/api/v0/venues/:id/follow/</code></p>
+<p><code class="prettyprint">POST https://api-staging.tokyoartbeat.com/api/v0/venues/:venue_id/follow/</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -2057,31 +1990,31 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>venue_id</td>
 <td>id of venue to follow</td>
 </tr>
 </tbody></table>
 
           <h2 id="unfollow-a-venue">Unfollow a venue</h2>
-<pre class="highlight shell"><code>curl DELETE -X <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/venues/:id/follow/"</span>
+<pre class="highlight shell"><code>curl DELETE -X <span class="s2">"https://api-staging.tokyoartbeat.com/api/v0/venues/:venue_id/follow/"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"venue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"id"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"XXXXXX"</span><span class="w"> 
-  </span><span class="err">}</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"following"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="err">}</span><span class="w">
+  </span><span class="nt">"follow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"venue_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07DE031E"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_following"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint removes the logged in user status for this venue (no status = initial state). THIS IS A NEW API TO BUILD</p>
+<p>This endpoint removes the logged in user status for this venue.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/venues/:id/follow/</code></p>
+<p><code class="prettyprint">DELETE https://api-staging.tokyoartbeat.com/api/v0/venues/:venue_id/follow/</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -2092,7 +2025,7 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>venue_id</td>
 <td>id of venue to unfollow</td>
 </tr>
 </tbody></table>
