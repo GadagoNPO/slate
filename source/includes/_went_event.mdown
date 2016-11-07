@@ -1,28 +1,28 @@
 ## Went to an event
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/:id/went"
+curl -X POST "http://api.tokyoartbeat.com/api/v1/events/:event_id/went"
 ```
 
 > The above command returns JSON structured like this 
 
 ```json
 {
-  "event" : {
-    "id" : "20XX/XXXX"
-  },
-  "went" : true
+  "participation": {
+    "event_id": "2016/A2E2",
+    "status": "went"
+  }
 }
 ```
 
-This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD
+This endpoint saves the logged in user status for this event.
 
-### HTTP Request
+### HTTPS Request
 
-`POST http://api.tokyoartbeat.com/api/v1/events/:id/went`
+`POST https://api.tokyoartbeat.com/api/v1/events/:event_id/went`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | ID  of events (2016/XXXX)
+event_id | ID  of events (2016/XXXX)

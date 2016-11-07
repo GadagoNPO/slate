@@ -1,28 +1,28 @@
 ## Undo went to an event
 
 ```shell
-curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:id/went"
+curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went"
 ```
 
 > The above command returns JSON structured like this 
 
 ```json
 {
-  "event" : {
-    "id" : "20XX/XXXX"
-  },
-  "went" : false
+  "participation": {
+    "event_id": "2016/A2E2",
+    "status": "going"
+  }
 }
 ```
 
-This endpoint removes the logged in user status for this event (no status = initial state).THIS IS A NEW API TO BUILD
+The event status is changed from went to going.
 
-### HTTP Request
+### HTTPS Request
 
-`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:id/went`
+`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | ID  of events (2016/XXXX)
+event_id | ID  of events (2016/XXXX)

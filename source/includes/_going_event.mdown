@@ -1,28 +1,28 @@
 ## Going to an event
 
 ```shell
-curl "https://api-staging.tokyoartbeat.com/api/v0/events/:id/going"
+curl -X POST "https://api-staging.tokyoartbeat.com/api/v1/events/:event_id/going"
 ```
 
 > The above command returns JSON structured like this 
 
 ```json
 {
-  "event" : {
-    "id" : "20XX/XXXX"
-  },
-  "going" : true
+  "participation": {
+    "event_id": "2016/A2E2",
+    "status": "going"
+  }
 }
 ```
 
-This endpoint saves the logged in user status for this event. THIS IS A NEW API TO BUILD
+This endpoint saves the logged in user status for this event.
 
-### HTTP Request
+### HTTPS Request
 
-`POST https://api-staging.tokyoartbeat.com/api/v0/events/:id/going`
+`POST https://api-staging.tokyoartbeat.com/api/v1/events/:event_id/going`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-id | ID  of events (2016/XXXX)
+event_id | ID  of events (2016/XXXX don't need to escape the slash, it is taken care of)
