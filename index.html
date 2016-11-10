@@ -1835,24 +1835,74 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tbody></table>
 
           <h2 id="went-events">Went events</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api-staging.tokyoartbeat.com/api/v1/events/went?locale=en"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api-staging.tokyoartbeat.com/api/v1/events/went?access_token=:access_token&amp;locale=en"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this when locale = en</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"events"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-  </span><span class="err">]</span><span class="w">
+  </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/E3E3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"“Un-Printed Material”"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"artist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oki Sato"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E603F237"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creation Gallery G8"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"date_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476198000</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">1479308400</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_permanent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/E3E3-670"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"670"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"goings_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api-staging.tokyoartbeat.com/api/v1/events/2016/E3E3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/B253"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"event_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nam June Paik “Who Will be Laughing in 2020 ?+?=??”"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"artist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nam June Paik"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"venue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7879E100"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Watari-um, The Watari Museum of Contemporary Art"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"date_start"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468681200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date_end"</span><span class="p">:</span><span class="w"> </span><span class="mi">1485615600</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"time_end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_permanent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tokyoartbeat.com/media/event/2016/B253-670"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="s2">"670"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"goings_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api-staging.tokyoartbeat.com/api/v1/events/2016/B253"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_nb_of_events"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nb_of_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"count_on_this_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"max_per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves the list of events the logged in user went. THIS IS A NEW API TO BUILD</p>
+<p>This endpoint retrieves the list of events the logged in user went.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api-staging.tokyoartbeat.com/api/v1/events/went?locale=:locale</code></p>
+<p><code class="prettyprint">GET https://api-staging.tokyoartbeat.com/api/v1/events/went?access_token=:access_tokenlocale=:locale</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1865,6 +1915,10 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 <tr>
 <td>locale</td>
 <td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>user access_token</td>
 </tr>
 </tbody></table>
 
