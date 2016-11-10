@@ -1,7 +1,7 @@
 ## Ungoing to an event
 
 ```shell
-curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going"
+curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going?access_token=:access_token"
 ```
 
 > The above command returns JSON structured like this 
@@ -19,11 +19,12 @@ This endpoint removes the logged in user status for this event.
 
 ### HTTPS Request
 
-`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going`
+`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/going?access_token=:access_token`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 event_id | ID  of events (2016/XXXX,  don't need to escape the slash, it is taken care of)
+access_token | user access_token
 

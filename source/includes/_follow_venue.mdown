@@ -1,7 +1,7 @@
 ## Follow a venue
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/venues/:venue_id/follow/"
+curl "http://api.tokyoartbeat.com/api/v1/venues/:venue_id/follow?access_token=:user_access_token&"
 ```
 
 > The above command returns JSON structured like this
@@ -19,10 +19,11 @@ This endpoint saves the logged in user status for this venue.
 
 ### HTTP Request
 
-`POST https://api-staging.tokyoartbeat.com/api/v0/venues/:venue_id/follow/`
+`POST https://api-staging.tokyoartbeat.com/api/v0/venues/:venue_id/follow?access_token=:access_token`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 venue_id | id of venue to follow
+access_token | user access_token

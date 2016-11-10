@@ -1,94 +1,101 @@
 ## Going events
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/going/:lang"
+curl "http://api.tokyoartbeat.com/api/v1/events/goings?locale =en"
 ```
 
 > The above command returns JSON structured like this when lang = en
 
 ```json
 {
-  "events" : [
-      {
-      "lang": "en",
-      "id": "2016/A2E2",
-      "link" : "https://api.tokyoartbeat",
-      "href": "http://www.tokyoartbeat.com/event/2016/A2E2",
-      "name": "Keith Haring ”Glowing - Evolving Forms“",
+  "events": [
+    {
+      "event_id": "2016/E29C",
+      "event_title": "Design Anatomy Exhibition― A Method for Seeing the World through Familiar Objects",
+      "artist": "Taku Sato, Yu Aramaki, aircord, Touya Okuda, Tomoko Ozawa",
       "venue": {
-        "href": "http://www.tokyoartbeat.com/venue/B4DF46FE",
-        "name": "Nakamura Keith-Haring Collection",
-        "type": "Museum",
-        "address": "10249-7 Kobuchizawamachi, Kitamori-shi, Yamanashi 408-0044",
-        "phone": "0551-36-8712",
-        "access": "From JR Kobuchizawa station, take the Yatsugatake Kogen Resort bus and get off at Nakamura Keith-Haring Bijutsukan.",
-        "area": {
-          "id": "other",
-          "text": "Kanto: others"
-        },
-        "openingHour": "10:00:00",
-        "closingHour": "17:00:00",
-        "daysClosed": {
-          "mon": "0",
-          "tue": "0",
-          "wed": "0",
-          "thu": "0",
-          "fri": "0",
-          "sat": "0",
-          "sun": "0",
-          "hol": "0"
-        },
-        "scheduleNote": "Closed during the winter holidays."
+        "id": "F994A9B7",
+        "name": "21_21 Design Sight"
       },
-      "media": [
-        "2D: Graphics",
-        "2D: Painting",
-        "2D: Drawing"
-      ],
-      "description": "An exhibition surveying the ever expanding and evolving forms of Keith Haring’s work, especially in the late 1980s, featured alongside day glow paintings produced in collaboration with graffiti writer LAII. ",
-      "image": [
-        {
-          "src": "http://www.tokyoartbeat.com/media/event/2016/A2E2-30",
-          "width": "30"
-        },
-        {
-          "src": "http://www.tokyoartbeat.com/media/event/2016/A2E2-80",
-          "width": "80"
-        },
-        {
-          "src": "http://www.tokyoartbeat.com/media/event/2016/A2E2-170",
-          "width": "170"
-        }
-      ],
-      "karma": "0.749931",
-      "price": {
-        "free": "0",
-        "text": "Adults ¥1000, University Students and Seniors over 65 ¥800, High, Junior High and Elementaly School Students ¥600, Infants free."
+      "schedule": {
+        "date_start": 1476370800,
+        "time_start": "00:00:00",
+        "date_end": 1485010800,
+        "time_end": "00:00:00",
+        "is_permanent": false
       },
-      "dateStart": "2016-04-24",
-      "dateEnd": "2017-01-31",
-      "scheduleNote": "Exbition Hours: 9:00-17:00, Open everyday throughout the exhibition",
-      "daysBeforeEnd": "193",
-      "permanentEvent": "0",
-      "distance": "0",
-      "datum": "tokyo",
-      "latitude": "35.884436",
-      "longitude": "138.321879"
+      "image": {
+        "src": "http://www.tokyoartbeat.com/media/event/2016/E29C-670",
+        "width": "670"
+      },
+      "goings_count": 1,
+      "link": "https://api-staging.tokyoartbeat.com/api/v1/events/2016/E29C"
     },
-    { ... },
-    { ... }
-    ]
+    {
+      "event_id": "2016/C7B2",
+      "event_title": "Kishin Shinoyama ”La Maison de Rendez-vous”",
+      "artist": "Kishin Shinoyama",
+      "venue": {
+        "id": "2AAC1037",
+        "name": "Hara Museum of Contemporary Art (Tokyo)"
+      },
+      "schedule": {
+        "date_start": 1472828400,
+        "time_start": "00:00:00",
+        "date_end": 1483887600,
+        "time_end": "00:00:00",
+        "is_permanent": false
+      },
+      "image": {
+        "src": "http://www.tokyoartbeat.com/media/event/2016/C7B2-670",
+        "width": "670"
+      },
+      "goings_count": 2,
+      "link": "https://api-staging.tokyoartbeat.com/api/v1/events/2016/C7B2"
+    },
+    {
+      "event_id": "2016/2355",
+      "event_title": "Iwami Art Museum Collection  Fashion and Interior Decoration in the 20th Century― From Poiret and Chanel to Saint-Laurent",
+      "artist": "Paul Poiret, Coco Chanel, Yves Saint-Laurent, Richard Avedon, George Barbier",
+      "venue": {
+        "id": "EB699885",
+        "name": "Shiodome Museum | Rouault Gallery"
+      },
+      "schedule": {
+        "date_start": 1474038000,
+        "time_start": "00:00:00",
+        "date_end": 1479826800,
+        "time_end": "00:00:00",
+        "is_permanent": false
+      },
+      "image": {
+        "src": "http://www.tokyoartbeat.com/media/event/2016/2355-670",
+        "width": "670"
+      },
+      "goings_count": 2,
+      "link": "https://api-staging.tokyoartbeat.com/api/v1/events/2016/2355"
+    }
+  ],
+  "pagination": {
+    "total_nb_of_events": 3,
+    "nb_of_pages": 1,
+    "current_page": 1,
+    "count_on_this_page": 3,
+    "max_per_page": 20
+  }
 }
+
 ```
 
 This endpoint retrieves the list of events the logged in user is going. THIS IS A NEW API TO BUILD
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/events/going/:lang`
+`GET http://api.tokyoartbeat.com/api/v1/events/goings?locale=en`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 lang | "en" or "ja"
+

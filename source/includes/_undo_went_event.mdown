@@ -1,7 +1,7 @@
 ## Undo went to an event
 
 ```shell
-curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went"
+curl -X DELETE "https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went?access_token=:access_token"
 ```
 
 > The above command returns JSON structured like this 
@@ -19,10 +19,11 @@ The event status is changed from went to going.
 
 ### HTTPS Request
 
-`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went`
+`DELETE https://api-staging.tokyoartbeat.com/api/v0/events/:event_id/went?access_token=:access_token`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 event_id | ID  of events (2016/XXXX)
+access_token | user access_token
