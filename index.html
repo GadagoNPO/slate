@@ -1650,7 +1650,7 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 </tbody></table>
 
           <h2 id="going-events">Going events</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/goings?locale =en"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.tokyoartbeat.com/api/v1/events/goings?access_token=:access_token&amp;locale=en"</span>
 </code></pre>
 
 <blockquote>
@@ -1736,11 +1736,11 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 
 </span></code></pre>
 
-<p>This endpoint retrieves the list of events the logged in user is going. THIS IS A NEW API TO BUILD</p>
+<p>This endpoint retrieves the list of events the logged in user is going.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/goings?locale=en</code></p>
+<p><code class="prettyprint">GET http://api.tokyoartbeat.com/api/v1/events/goings?access_token=:access_tokenlocale=en</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1753,6 +1753,10 @@ curl <span class="s2">"https://api.tokyoartbeat.com/api/v1/holidays"</span>
 <tr>
 <td>lang</td>
 <td>&ldquo;en&rdquo; or &ldquo;ja&rdquo;</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>user access_token</td>
 </tr>
 </tbody></table>
 
