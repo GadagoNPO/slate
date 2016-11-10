@@ -1,7 +1,7 @@
 ## Going events
 
 ```shell
-curl "http://api.tokyoartbeat.com/api/v1/events/goings?locale =en"
+curl "http://api.tokyoartbeat.com/api/v1/events/goings?access_token=:access_token&locale=en"
 ```
 
 > The above command returns JSON structured like this when lang = en
@@ -87,15 +87,16 @@ curl "http://api.tokyoartbeat.com/api/v1/events/goings?locale =en"
 
 ```
 
-This endpoint retrieves the list of events the logged in user is going. THIS IS A NEW API TO BUILD
+This endpoint retrieves the list of events the logged in user is going.
 
 ### HTTP Request
 
-`GET http://api.tokyoartbeat.com/api/v1/events/goings?locale=en`
+`GET http://api.tokyoartbeat.com/api/v1/events/goings?access_token=:access_tokenlocale=en`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 lang | "en" or "ja"
+access_token | user access_token
 
